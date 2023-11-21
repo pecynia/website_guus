@@ -1,0 +1,25 @@
+{
+    "navigation": {
+      "title": "Hot Topics Times",
+      "home": "Home",
+      "about": "About"
+    },
+    "banner": {
+      "description": "This is the banner description"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "short": "FAQ"
+    },
+    "page": {
+      "home": {
+        "title": "Welcome to NextJs i18n",
+        "description": "Internationalization in NextJs 14 App router",
+        "button": "Blog"
+      },
+      "about": {
+        "title": "About Us",
+        "description": "This is the about page"
+      }
+    }
+  }
