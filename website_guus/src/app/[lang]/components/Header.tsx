@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Locale } from '@/app/../../i18n.config'
 import { getDictionary } from '@/lib/dictionary'
-
+import ClientHeaderButtonWrapper from '@/app/[lang]/components/admin/ClientHeaderButtonWrapper'
 
 export default async function Header({ lang }: { lang: Locale }) {
 
@@ -13,6 +13,7 @@ export default async function Header({ lang }: { lang: Locale }) {
                 <Link href='/[lang]' as={`/${lang}`}>
                     <p>{navigation.title}</p>
                 </Link>
+                <ClientHeaderButtonWrapper />
             </div>
         </header>
     )

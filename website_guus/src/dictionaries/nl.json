@@ -1,25 +1,25 @@
 {
-    "navigation": {
-      "title": "Hot Topics Times",
-      "home": "Thuis",
-      "about": "Over ons"
+  "navigation": {
+    "title": "Hot Topics Times",
+    "home": "Thuis",
+    "about": "Over ons"
+  },
+  "banner": {
+    "description": "Dit is een voorbeeld van een banner"
+  },
+  "faq": {
+    "title": "Veelgestelde vragen",
+    "short": "FAQ"
+  },
+  "page": {
+    "home": {
+      "title": "Welkom bij de startpagina",
+      "description": "Dit is de startpagina",
+      "button": "Klik hier"
     },
-    "banner": {
-      "description": "Dit is een voorbeeld van een banner"
-    },
-    "faq": {
-      "title": "Veelgestelde vragen",
-      "short": "FAQ"
-    },
-    "page": {
-      "home": {
-        "title": "Welkom bij de startpagina",
-        "description": "Dit is de startpagina",
-        "button": "Klik hier"
-      },
-      "about": {
-        "title": "Welkom bij de over ons pagina",
-        "description": "Dit is de over ons pagina"
-      }
+    "about": {
+      "title": "Welkom bij de over ons pagina",
+      "description": "Dit is de over ons pagina"
     }
   }
+}

@@ -1,12 +1,14 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server';
+import { NextRequestWithAuth } from 'next-auth/middleware';
+import { i18n } from '@/app/../../i18n.config';
+import { match as matchLocale } from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
 
-import { i18n } from '@/app/../../i18n.config'
+// Middleware for NextAuth
+import nextAuthMiddleware from 'next-auth/middleware';
 
-import { match as matchLocale } from '@formatjs/intl-localematcher'
-import Negotiator from 'negotiator'
 
-function getLocale(request: NextRequest): string | undefined {
+function getLocale(request: NextRequestWithAuth): string | undefined {
   const negotiatorHeaders: Record<string, string> = {}
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value))
 
@@ -18,25 +20,37 @@ function getLocale(request: NextRequest): string | undefined {
   return locale
 }
 
-export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname
+async function i18n_middleware(request: NextRequestWithAuth) {
+  const pathname = request.nextUrl.pathname;
   const pathnameIsMissingLocale = i18n.locales.every(
     locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  )
+  );
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
-    const locale = getLocale(request)
+    const locale = getLocale(request);
     return NextResponse.redirect(
       new URL(
         `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
         request.url
       )
-    )
+    );
   }
 }
 
-export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+export async function middleware(request: NextRequestWithAuth) {
+  // Check if the request is for an admin path with any locale
+  const isAdminPath = i18n.locales.some(locale => request.nextUrl.pathname.startsWith(`/${locale}/admin`));
+  
+  if (isAdminPath) {
+    return await nextAuthMiddleware(request);
+  }
+
+  // If not, apply the i18n middleware
+  return await i18n_middleware(request);
 }
+
+export const config = {
+  // Matcher handling all paths except specified ones
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+};
