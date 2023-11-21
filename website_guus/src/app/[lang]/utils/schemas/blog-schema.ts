@@ -1,20 +1,21 @@
 import { StoryContent } from '@/app/../../typings';
+import { Locale } from '@/app/../../i18n.config'
 
-export function addBlogJsonLd(story: StoryContent) {
+export function addBlogJsonLd(lang: Locale, story: StoryContent) {
     return {
       __html: `{
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://www.hottopicstimes.com/blog/${story.slug}"
+          "@id": "{$process.env.NEXT_PUBLIC_BASE_URL}/{$lang}/blog/{$story.slug}"
         },
         "headline": "${story.title}",
         "description": "${story.description}",
         "image": [],
         "author": {
           "@type": "Person",
-          "url": "https://www.hottopicstimes.com",
+          "url": "
           "name": "Hot Topics Times"
         },
         "publisher": {
@@ -22,7 +23,7 @@ export function addBlogJsonLd(story: StoryContent) {
           "name": "Hot Topics Times",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://www.hottopicstimes.com/logo.png"
+            "url": "{$process.env.NEXT_PUBLIC_BASE_URL}/logo.png"
           }
         },
         "datePublished": "${story.date}",
