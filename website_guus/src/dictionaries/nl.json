@@ -1,8 +1,17 @@
 {
   "navigation": {
-    "title": "Hot Topics Times",
-    "home": "Thuis",
-    "about": "Over ons"
+    "title": {
+      "label": "Guus' Website",
+      "href": "/"
+    },
+    "home": {
+      "label": "Home",
+      "href": "/"
+    },
+    "about": {
+      "label": "Over ons",
+      "href": "/about"
+    }
   },
   "banner": {
     "description": "Dit is een voorbeeld van een banner"

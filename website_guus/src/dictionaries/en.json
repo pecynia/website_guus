@@ -1,8 +1,17 @@
 {
   "navigation": {
-    "title": "Hot Topics Times",
-    "home": "Home",
-    "about": "About"
+    "title": {
+      "label": "Guus' Website",
+      "href": "/"
+    },
+    "home": {
+      "label": "Home",
+      "href": "/"
+    },
+    "about": {
+      "label": "About",
+      "href": "/about"
+    }
   },
   "banner": {
     "description": "This is the banner description"

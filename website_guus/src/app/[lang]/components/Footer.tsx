@@ -12,12 +12,12 @@ export default async function Footer({ lang }: { lang: Locale }) {
             <div className='container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 justify-center'>
                 <div className='flex flex-col items-center'>
                     <Link href='/[lang]' as={`/${lang}`}>
-                        <p>{navigation.title}</p>
+                        <p>{navigation.title.label}</p>
                     </Link>
                 </div>
                 <div className='flex flex-col items-center'>
                     <Link href='/[lang]/about' as={`/${lang}/about`}>
-                        <p>{navigation.about}</p>
+                        <p>{navigation.about.label}</p>
                     </Link>
                 </div>
             </div>

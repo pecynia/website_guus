@@ -1,20 +1,19 @@
-import Link from 'next/link'
-import { Locale } from '@/app/../../i18n.config'
-import { getDictionary } from '@/lib/dictionary'
-import ClientHeaderButtonWrapper from '@/app/[lang]/components/admin/ClientHeaderButtonWrapper'
+import Link from 'next/link';
+import { Locale } from '@/app/../../i18n.config';
+import { getDictionary } from '@/lib/dictionary';
+import ClientHeaderButtonWrapper from '@/app/[lang]/components/admin/ClientHeaderButtonWrapper';
 
 export default async function Header({ lang }: { lang: Locale }) {
-
-    const { navigation } = await getDictionary(lang)
+    const { navigation } = await getDictionary(lang);
 
     return (
         <header className='flex items-center justify-between space-x-2 font-bold px-10 py-5'>
             <div className='flex items-center space-x-2'>
                 <Link href='/[lang]' as={`/${lang}`}>
-                    <p>{navigation.title}</p>
+                    <p>{navigation.title.label}</p>
                 </Link>
                 <ClientHeaderButtonWrapper />
             </div>
         </header>
-    )
+    );
 }
