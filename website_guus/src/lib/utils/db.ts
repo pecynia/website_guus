@@ -1,6 +1,8 @@
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb'
 import NodeCache from 'node-cache'
 import { Locale } from '@/app/../../i18n.config'
+import { JSONContent } from '@tiptap/react'
+
 
 
 
@@ -38,6 +40,9 @@ async function connectToDatabase() {
     return db
 }
 
+// -------------------- DATABASE OPERATIONS --------------------
+
+
 // Get document given id
 export async function getParagraphJson(documentId: string) {
     const db = await connectToDatabase()
@@ -46,7 +51,22 @@ export async function getParagraphJson(documentId: string) {
     return result
 }
 
-// -------------------- DATABASE OPERATIONS --------------------
+// Assuming documentId is of type string. Modify as per your needs.
+export async function saveParagraphJson(documentId: string, paragraphJson: JSONContent) {
+    const db = await connectToDatabase()
+    const collection = db.collection('content')
+
+    // Using documentId as the filter criteria to match the _id field of the desired document
+    const filter = { _id: documentId }
+
+    const result = await collection.updateOne(
+        filter,
+        { $set: { paragraphJson: paragraphJson } },
+        { upsert: true }
+    )
+
+    return result
+}
 
 // --------------- CACHING AND SERVER-SIDE PROPS ---------------
 

@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import { Metadata, ResolvingMetadata  } from 'next'
+import { motion } from 'framer-motion'
+
 
 import { Locale } from '@/app/../../i18n.config'
 import { getDictionary } from '@/lib/dictionary'
+import TestComponent from './components/TestComponent'
 
 export async function generateMetadata(
   { params }: { params: { lang: Locale } },
@@ -33,8 +36,7 @@ export default async function Home({
     
     return (
       <section className='h-96 flex flex-col justify-center items-center'>
-        <h1 className='text-3xl'>{page.home.title}</h1>
-        <p>{page.home.description}</p>
+        <TestComponent />
       </section>
   )
 }
