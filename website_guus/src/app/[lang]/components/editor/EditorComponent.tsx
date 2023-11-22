@@ -19,13 +19,15 @@ import { motion } from 'framer-motion'
 interface EditorComponentProps {
     initialContent?: string,
     editable?: boolean,
-    documentId: string 
+    documentId: string,
+    currentLocale: string
 }
 
 const EditorComponent: React.FC<EditorComponentProps> = ({ 
     initialContent = '', 
     editable = false, 
-    documentId 
+    documentId,
+    currentLocale
 }) => {    
     const [editorContent, setEditorContent] = useState({})
     const [isSaving, setIsSaving] = useState(false)
@@ -34,7 +36,7 @@ const EditorComponent: React.FC<EditorComponentProps> = ({
         extensions: [
             StarterKit,
             Placeholder.configure({
-                placeholder: 'Begin met typen...',
+                placeholder: 'Start typing...',
             }),
             TextStyle,
             Color,
@@ -69,7 +71,8 @@ const EditorComponent: React.FC<EditorComponentProps> = ({
                 body: JSON.stringify(editorContent),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Document-ID': documentId  // using the documentId prop
+                    'Document-ID': documentId,
+                    'Locale': currentLocale
                 },
             })
             // check for res.ok or other conditions here
@@ -85,11 +88,14 @@ const EditorComponent: React.FC<EditorComponentProps> = ({
     return (
         <motion.div  
             layout
-            // transition={{ type: "spring", ease: "easeInOut", duration: 0.1 }}
-            className='relative flex flex-col'
+            transition={{ type: "spring", ease: "easeInOut", duration: 0.1 }}
+            className='relative flex flex-col min-w-[500px]'
         >
             {editable ? <MenuBar editor={editor} /> : null}
-            <motion.div className=''>
+            <motion.div 
+                layout
+                className=''
+            >
                 <EditorContent editor={editor} />
             </motion.div>
     

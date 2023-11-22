@@ -43,30 +43,40 @@ async function connectToDatabase() {
 // -------------------- DATABASE OPERATIONS --------------------
 
 
-// Get document given id
-export async function getParagraphJson(documentId: string) {
-    const db = await connectToDatabase()
-    const collection = db.collection('content')
-    const result = await collection.findOne({ _id: documentId })
-    return result
+// Get document given id and locale
+export async function getParagraphJson(documentId: string, locale: Locale) {
+    const db = await connectToDatabase();
+    const collection = db.collection('content');
+    const result = await collection.findOne({ _id: documentId });
+
+    // Constructing the response to match the original format
+    if (result && result.content && result.content[locale]) {
+        return {
+            _id: result._id,
+            paragraphJson: result.content[locale]
+        };
+    }
+    
+    return null;
 }
 
-// Assuming documentId is of type string. Modify as per your needs.
-export async function saveParagraphJson(documentId: string, paragraphJson: JSONContent) {
-    const db = await connectToDatabase()
-    const collection = db.collection('content')
 
-    // Using documentId as the filter criteria to match the _id field of the desired document
-    const filter = { _id: documentId }
 
-    const result = await collection.updateOne(
-        filter,
-        { $set: { paragraphJson: paragraphJson } },
-        { upsert: true }
-    )
+// Save paragraph JSON content for a specific locale
+export async function saveParagraphJson(documentId: string, locale: Locale, paragraphJson: JSONContent) {
+    const db = await connectToDatabase();
+    const collection = db.collection('content');
 
-    return result
+    const filter = { _id: documentId };
+    const update = { 
+        $set: { [`content.${locale}`]: paragraphJson } 
+    };
+
+    const result = await collection.updateOne(filter, update, { upsert: true });
+
+    return result;
 }
+
 
 // --------------- CACHING AND SERVER-SIDE PROPS ---------------
 

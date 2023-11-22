@@ -12,17 +12,21 @@ import StarterKit from '@tiptap/starter-kit'
 import { Color } from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
 import { Button } from "@/app/[lang]/components/ui/button"
+import { Locale, i18n } from "../../../../../i18n.config"
 
 interface EditorWrapperProps {
     documentId: string
+    currentLocale: string
     link?: string
     buttonText?: string
 }
 
 // TODO: CONVERT TO SERVER COMPONENT (so we don't fetch everytime)
-const EditorWrapper = ({ documentId, link, buttonText }: EditorWrapperProps) => {
+const EditorWrapper = ({ documentId, link, buttonText, currentLocale }: EditorWrapperProps) => {
     const { status, data: session } = useSession()
     const [fetchedContent, setFetchedContent] = useState('')
+
+    const allLocales = i18n.locales
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,6 +35,7 @@ const EditorWrapper = ({ documentId, link, buttonText }: EditorWrapperProps) => 
                 headers: {
                     'Content-Type': 'application/json',
                     'Document-ID': documentId,
+                    'Locale': currentLocale
                 },
             })
             const json = await contentFromDb.json()
@@ -40,26 +45,28 @@ const EditorWrapper = ({ documentId, link, buttonText }: EditorWrapperProps) => 
                     TextStyle,
                     Color,
                 ])
+                console.log(contentAsHtml)
                 setFetchedContent(contentAsHtml)
-            }
+            }            
         }
 
         fetchData()
     }, [])
 
     if (status === "loading") {
-        return <motion.div layout className="flex justify-center items-center mt-5 w-full h-full">
-            <ReloadIcon className="w-4 h-4 animate-spin" />
-        </motion.div>
+        // return <motion.div layout className="flex justify-center items-center mt-5 w-full h-full">
+        //     <ReloadIcon className="w-4 h-4 animate-spin" />
+        // </motion.div>
     }
 
     return (
         <motion.div  
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: '0%' }}
-            transition={{ type: "spring", ease: "easeInOut", duration: 0.2 }}
+            // layout
+            // initial={{ opacity: 0}}
+            // animate={{ opacity: 1 }}
+            // transition={{ type: "spring", ease: "easeInOut", duration: 0.2 }}
         >
-            <EditorComponent documentId={documentId} editable={!!session} initialContent={fetchedContent} />
+            <EditorComponent currentLocale={currentLocale} documentId={documentId} editable={!!session} initialContent={fetchedContent} />
             {link && buttonText && (
                 <div className="px-4 flex justify-center">
                     <Button className="rounded-none mt-4">

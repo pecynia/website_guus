@@ -36,7 +36,7 @@ export default async function Home({
     
     return (
       <section className='h-96 flex flex-col justify-center items-center'>
-        <TestComponent />
+        <TestComponent currentLocale={lang} />
       </section>
   )
 }
