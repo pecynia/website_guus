@@ -5,7 +5,7 @@ import { Locale } from '@/app/../../i18n.config'
 import { getDictionary } from '@/lib/dictionary'
 
 export async function generateMetadata(
-  { params }: { params: { lang: Locale } }, // The params for the page
+  { params }: { params: { lang: Locale } },
   parent: ResolvingMetadata 
   ): Promise<Metadata> {
   return {
@@ -32,15 +32,9 @@ export default async function Home({
     const { page } = await getDictionary(lang)
     
     return (
-      <section>
+      <section className='h-96 flex flex-col justify-center items-center'>
         <h1 className='text-3xl'>{page.home.title}</h1>
         <p>{page.home.description}</p>
-        <Link href='/[lang]/blog' as={`/${lang}/blog`}>
-          <div className='border border-black p-4 max-w-xs'>
-            <h2 className='text-xl'>{page.home.button}</h2>
-          </div>
-        </Link>
-
       </section>
   )
 }

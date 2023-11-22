@@ -38,6 +38,14 @@ async function connectToDatabase() {
     return db
 }
 
+// Get document given id
+export async function getParagraphJson(documentId: string) {
+    const db = await connectToDatabase()
+    const collection = db.collection('content')
+    const result = await collection.findOne({ _id: documentId })
+    return result
+}
+
 // -------------------- DATABASE OPERATIONS --------------------
 
 // --------------- CACHING AND SERVER-SIDE PROPS ---------------
@@ -84,3 +92,7 @@ async function connectToDatabase() {
 //     getAllStorySlugs,
 //     getStoryBySlug,
 // }
+
+export default {
+    getParagraphJson
+}

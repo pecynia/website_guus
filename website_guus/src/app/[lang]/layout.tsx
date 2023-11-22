@@ -6,7 +6,6 @@ import { Inter } from 'next/font/google'
 
 // Assuming these components are adjusted to accept `lang` as a prop
 import Header from '@/app/[lang]/components/Header'
-import Banner from '@/app/[lang]/components/Banner'
 import Footer from "@/app/[lang]/components/Footer"
 
 const inter = Inter({ subsets: ['latin'] })
@@ -33,7 +32,6 @@ export default function RootLayout({
       <body className={`${inter.className} flex min-h-full flex-col font-raleway`}>
         <NextAuthProvider>
           <Header lang={params.lang} />
-          <Banner lang={params.lang} />
           <main className='flex-grow'>{children}</main>
           <Footer lang={params.lang} />
         </NextAuthProvider>
