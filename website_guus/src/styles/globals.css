@@ -114,7 +114,7 @@
   }
 
   ol {
-    list-style: decimal;
+    @apply list-decimal pl-4;
   }
 
   a {

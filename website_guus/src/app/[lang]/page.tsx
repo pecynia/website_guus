@@ -35,7 +35,7 @@ export default async function Home({
     const { page } = await getDictionary(lang)
     
     return (
-      <section className='h-96 flex flex-col justify-center items-center'>
+      <section className='py-16 flex flex-col justify-center items-center'>
         <TestComponent currentLocale={lang} />
       </section>
   )
