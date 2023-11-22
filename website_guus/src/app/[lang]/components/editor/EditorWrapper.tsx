@@ -48,13 +48,17 @@ const EditorWrapper = ({ documentId, link, buttonText }: EditorWrapperProps) => 
     }, [])
 
     if (status === "loading") {
-        return <div className="flex justify-center items-center mt-5 w-full h-full">
+        return <motion.div layout className="flex justify-center items-center mt-5 w-full h-full">
             <ReloadIcon className="w-4 h-4 animate-spin" />
-        </div>
+        </motion.div>
     }
 
     return (
-        <motion.div layout>
+        <motion.div  
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: '0%' }}
+            transition={{ type: "spring", ease: "easeInOut", duration: 0.2 }}
+        >
             <EditorComponent documentId={documentId} editable={!!session} initialContent={fetchedContent} />
             {link && buttonText && (
                 <div className="px-4 flex justify-center">

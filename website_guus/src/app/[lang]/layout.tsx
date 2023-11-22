@@ -10,11 +10,6 @@ import Footer from "@/app/[lang]/components/Footer"
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: "Website Title",
-  description: "Website Description",
-}
-
 export async function generateStaticParams() {
   return i18n.locales.map(locale => ({ lang: locale }))
 }

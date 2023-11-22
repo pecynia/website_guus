@@ -79,3 +79,110 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* Editable content */
+.tiptap {
+  @apply p-4;
+
+  p {
+    @apply mt-2 mb-4 leading-6;
+  }
+
+  h1 {
+    @apply mt-4 mb-5 text-3xl font-youngSerif;
+  }
+
+  h2 {
+    @apply mt-4 mb-4 text-2xl font-youngSerif;
+  }
+
+  h3 {
+    @apply mt-4 mb-4 text-xl font-youngSerif;
+  }
+
+  > * + * {
+    @apply mt-4;
+  }
+
+  ul, ol {
+    @apply pl-6;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+  }
+
+  textarea {
+    display: none;
+  }
+
+  ul.special-icon-list > li {
+    display: block;
+    position: relative;
+  }
+  
+  ul.special-icon-list > li::before {
+    content: url('/check.svg');
+    stroke: hsl(var(--primary));
+    display: inline-block;
+    width: 1.5em;
+    position: absolute;
+    left: -0.25em;
+  }
+  
+  ul.special-icon-list, ul.special-icon-list li {
+    @apply pl-8 -my-1;
+  }
+  
+  hr {
+    @apply mt-8 mb-8 border-2 border-gray-300 w-full;
+  }
+}
+.tiptap p.is-editor-empty:first-child::before {
+  color: #bdb6ad;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+div[contenteditable="true"] {
+  @apply outline-none;
+}
+div[contenteditable="true"]:focus {
+  @apply ring-2 ring-black rounded-xl;
+}
+
+
+
+/* Lenis */
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

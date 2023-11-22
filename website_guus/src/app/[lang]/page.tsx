@@ -12,15 +12,15 @@ export async function generateMetadata(
   parent: ResolvingMetadata 
   ): Promise<Metadata> {
   return {
-    title: 'Hot Topics Times',
-    description: 'A news site for hot topics',
+    title: 'Website Title',
+    description: 'Website Description',
     openGraph: {
       type: 'website',
-      title: 'Hot Topics Times',
-      description: 'A news site for hot topics',
-      url: 'https://www.hottopicstimes.com',
+      title: 'Website Title',
+      description: 'Website Description',
+      url: 'https://example.com',
       images: [],
-      siteName: 'Hot Topics Times',
+      siteName: 'Website Name',
       locale: params.lang,
       ttl: 30,
     }

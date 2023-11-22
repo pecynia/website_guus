@@ -43,7 +43,7 @@ const EditorComponent: React.FC<EditorComponentProps> = ({
         content: '',
         editorProps: {
             attributes: {
-                class: '',
+                class: 'prose max-w-none w-full',
             },
         },
         editable: editable,
@@ -83,13 +83,17 @@ const EditorComponent: React.FC<EditorComponentProps> = ({
     
       
     return (
-        <motion.div className='relative flex flex-col -mb-5' layout transition={{ type: "spring", ease: "easeInOut", duration: 0.1 }}>
-          {editable ? <MenuBar editor={editor} /> : null}
-          <motion.div layout >
-            <EditorContent editor={editor} />
-          </motion.div>
+        <motion.div  
+            layout
+            // transition={{ type: "spring", ease: "easeInOut", duration: 0.1 }}
+            className='relative flex flex-col'
+        >
+            {editable ? <MenuBar editor={editor} /> : null}
+            <motion.div className=''>
+                <EditorContent editor={editor} />
+            </motion.div>
     
-          <div className="flex justify-end mt-5">
+            <div className="absolute flex justify-end bottom-0 right-0 -mb-14">
                 {editable && hasChanges && (
                     isSaving ? 
                     <Button disabled size="lg">
