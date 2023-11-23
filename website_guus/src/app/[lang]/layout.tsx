@@ -1,5 +1,4 @@
 import '../../styles/globals.css'
-import type { Metadata } from 'next'
 import { NextAuthProvider } from "@/lib/providers"
 import { Locale, i18n } from '@/app/../../i18n.config'
 import { Inter } from 'next/font/google'
