@@ -21,10 +21,10 @@ export const HeaderButton = () => {
 
 
         <Button
-        size="icon"
-        aria-label="Logout"
-        className="mr-1 hover:bg-secondary-foreground hover:text-primary"
-        onClick={() => signOut()}
+          size="icon"
+          aria-label="Logout"
+          className="mr-1 hover:bg-secondary-foreground hover:text-primary"
+          onClick={() => signOut()}
         >
             <span className="sr-only">Log Out</span>
             <LogOut className="h-5 w-5 rotate-0 scale-100 transition-all duration-100 transform" />

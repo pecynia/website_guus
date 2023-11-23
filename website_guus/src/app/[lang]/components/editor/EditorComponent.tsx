@@ -9,9 +9,10 @@ import StarterKit from '@tiptap/starter-kit'
 import { Color } from '@tiptap/extension-color'
 import Placeholder from '@tiptap/extension-placeholder'
 import TextStyle from '@tiptap/extension-text-style'
+import CustomBulletList from '@/app/[lang]/components/editor/CustomBulletList'
+
 import { generateJSON } from '@tiptap/html'
 
-import CustomBulletList from '@/app/[lang]/components/editor/CustomBulletList'
 import MenuBar from '@/app/[lang]/components/editor/MenuBar'
 import { Button } from '@/app/[lang]/components/ui/button'
 import { motion } from 'framer-motion'
