@@ -6,6 +6,10 @@ import { useSearchParams } from 'next/navigation';
 import { Locale, i18n } from '../../../../i18n.config';
 import Image from 'next/image';
 
+import DE from '../../../../public/lang/DE.svg';
+import GB from '../../../../public/lang/GB.svg';
+import NL from '../../../../public/lang/NL.svg';
+
 import {
   Select,
   SelectContent,
@@ -49,7 +53,7 @@ export default function LocaleSwitcher({ locale }: { locale: Locale }) {
                             <div className="flex items-center">
                                 <Image 
                                     alt={loc.toUpperCase()}
-                                    src={`/lang/${loc}.svg`}
+                                    src={loc === "en" ? GB : loc === "nl" ? NL : DE}
                                     width={24}
                                     height={24}
                                     className="mr-2"
