@@ -45,7 +45,6 @@ const EditorWrapper = ({ documentId, link, buttonText, currentLocale }: EditorWr
                     TextStyle,
                     Color,
                 ])
-                console.log(contentAsHtml)
                 setFetchedContent(contentAsHtml)
             }            
         }
