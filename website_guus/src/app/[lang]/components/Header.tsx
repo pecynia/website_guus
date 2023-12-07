@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Locale } from '@/app/../../i18n.config';
 import { getDictionary } from '@/lib/dictionary';
 import ClientHeaderButtonWrapper from '@/app/[lang]/components/admin/ClientHeaderButtonWrapper';
-import LocaleSwitchButton from '@/app/[lang]/components/LocaleSwitcher';
+import LocaleSwitchButton from '@/app/[lang]/components/lang/LocaleSwitcher';
 
 export default async function Header({ lang }: { lang: Locale }) {
     const { navigation } = await getDictionary(lang);

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { useEditor, EditorContent, generateHTML } from '@tiptap/react'
+import { useEditor, EditorContent } from '@tiptap/react'
 import { ReloadIcon } from "@radix-ui/react-icons"
 import { Save } from 'lucide-react'
 
@@ -16,12 +16,14 @@ import { generateJSON } from '@tiptap/html'
 import MenuBar from '@/app/[lang]/components/editor/MenuBar'
 import { Button } from '@/app/[lang]/components/ui/button'
 import { motion } from 'framer-motion'
+import EditorLocaleSwitcher from '@/app/[lang]/components/editor/EditorLocaleSwitcher'
+import { Locale } from '../../../../../i18n.config'
 
 interface EditorComponentProps {
     initialContent?: string,
     editable?: boolean,
     documentId: string,
-    currentLocale: string
+    currentLocale: Locale
 }
 
 const EditorComponent: React.FC<EditorComponentProps> = ({ 
@@ -92,7 +94,12 @@ const EditorComponent: React.FC<EditorComponentProps> = ({
             transition={{ type: "spring", ease: "easeInOut", duration: 0.1 }}
             className='relative flex flex-col'
         >
-            {editable ? <MenuBar editor={editor} /> : null}
+        {editable && (
+            <>
+                <MenuBar editor={editor} />
+                <EditorLocaleSwitcher currentLocale={currentLocale} />
+            </>
+        )}
             <motion.div 
                 layout
                 className=''

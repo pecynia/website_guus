@@ -16,7 +16,7 @@ import { Locale, i18n } from "../../../../../i18n.config"
 
 interface EditorWrapperProps {
     documentId: string
-    currentLocale: string
+    currentLocale: Locale
     link?: string
     buttonText?: string
 }
@@ -59,7 +59,7 @@ const EditorWrapper = ({ documentId, link, buttonText, currentLocale }: EditorWr
     }
 
     return (
-        <motion.div  
+        <motion.div layout className="w-full"
             // layout
             // initial={{ opacity: 0}}
             // animate={{ opacity: 1 }}

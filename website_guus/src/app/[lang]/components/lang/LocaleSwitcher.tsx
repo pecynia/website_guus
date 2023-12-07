@@ -1,14 +1,12 @@
 "use client"
 
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
-import { useSearchParams } from 'next/navigation';
-import { Locale, i18n } from '../../../../i18n.config';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
+import { Locale, i18n } from '../../../../../i18n.config'
+import Image from 'next/image'
 
-import DE from '../../../../public/lang/DE.svg';
-import GB from '../../../../public/lang/GB.svg';
-import NL from '../../../../public/lang/NL.svg';
+import LocaleIcons from '@/app/[lang]/components/lang/LocaleIcon'
 
 import {
   Select,
@@ -18,23 +16,23 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/app/[lang]/components/ui/select";
-import React from 'react';
+} from "@/app/[lang]/components/ui/select"
+import React from 'react'
 
 export default function LocaleSwitcher({ locale }: { locale: Locale }) {
-    const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
 
-    const [selectedLocale, setSelectedLocale] = React.useState(locale);
+    const [selectedLocale, setSelectedLocale] = React.useState(locale)
 
     const switchLocale = (newLocale: Locale) => {
-        console.log("Selected locale:", newLocale);
+        console.log("Selected locale:", newLocale)
         if (newLocale !== locale) {
-            setSelectedLocale(newLocale);
-            router.replace(pathname.replace(`/${locale}`, `/${newLocale}`) + searchParams);
+            setSelectedLocale(newLocale)
+            router.replace(pathname.replace(`/${locale}`, `/${newLocale}`) + searchParams)
         }
-    };
+    }
 
     return (
         <Select value={selectedLocale} onValueChange={switchLocale}>
@@ -53,7 +51,7 @@ export default function LocaleSwitcher({ locale }: { locale: Locale }) {
                             <div className="flex items-center">
                                 <Image 
                                     alt={loc.toUpperCase()}
-                                    src={loc === "en" ? GB : loc === "nl" ? NL : DE}
+                                    src={LocaleIcons[loc]}
                                     width={24}
                                     height={24}
                                     className="mr-2"
@@ -65,5 +63,5 @@ export default function LocaleSwitcher({ locale }: { locale: Locale }) {
                 </SelectGroup>
             </SelectContent>
         </Select>
-    );
+    )
 }
