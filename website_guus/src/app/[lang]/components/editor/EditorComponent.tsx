@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import { ReloadIcon } from "@radix-ui/react-icons"
 import { Save } from 'lucide-react'
+import { revalidateTag } from 'next/cache'
 
 import StarterKit from '@tiptap/starter-kit'
 import { Color } from '@tiptap/extension-color'
@@ -80,6 +81,7 @@ const EditorComponent: React.FC<EditorComponentProps> = ({
             })
             // check for res.ok or other conditions here
             setHasChanges(false)
+            revalidateTag('content-' + documentId)
         } catch (error) {
             console.error('Failed to save:', error)
         } finally {
